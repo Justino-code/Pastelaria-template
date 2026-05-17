@@ -1,0 +1,104 @@
+/* src/styles/header.css */
+.vitrine-header,
+.cart-header,
+.checkout-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+  height: var(--header-height);
+  z-index: 1000;
+}
+
+.vitrine-header h1,
+.cart-header h2,
+.checkout-header h2 {
+  font-size: 1.2rem;
+  color: var(--text-h);
+}
+
+.header-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.theme-toggle {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-h);
+  transition: all 0.2s;
+}
+
+.theme-toggle:hover {
+  background: var(--accent-bg);
+  transform: scale(1.05);
+}
+
+.cart-icon-btn {
+  position: relative;
+  background: var(--code-bg);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-h);
+  transition: all 0.2s;
+}
+
+.cart-icon-btn:hover {
+  background: var(--accent);
+  color: white;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: var(--danger);
+  color: white;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 30px;
+  padding: 6px 14px;
+  cursor: pointer;
+  color: var(--text);
+  font-size: 0.8rem;
+  transition: all 0.2s;
+}
+
+.back-btn:hover {
+  background: var(--accent-bg);
+  color: var(--accent);
+}

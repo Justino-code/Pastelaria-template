@@ -1,0 +1,10 @@
+@import './styles/variables.css';
+@import './styles/global.css';
+@import './styles/splash.css';
+@import './styles/header.css';
+@import './styles/sidebar.css';
+@import './styles/vitrine.css';
+@import './styles/product-card.css';
+@import './styles/cart.css';
+@import './styles/checkout.css';
+@import './styles/responsive.css';
