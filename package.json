@@ -17,7 +17,8 @@
     "react-dom": "^19.2.6",
     "react-hot-toast": "^2.6.0",
     "react-router-dom": "^7.15.1",
-    "react-social-icons": "^6.26.0"
+    "react-social-icons": "^6.26.0",
+    "tslib": "^2.8.1"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
