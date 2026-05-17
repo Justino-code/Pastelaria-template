@@ -1,8 +1,8 @@
 // src/components/Sidebar.tsx
-import {
-  Clock,
-  MapPin,
-  Phone,
+import { 
+  Clock, 
+  MapPin, 
+  Phone, 
   Gift,
   Timer,
   Award,
@@ -12,23 +12,20 @@ import {
   Star
 } from 'lucide-react';
 import { SocialIcon } from 'react-custom-social-icons';
-import Logo from './Logo';
 
 const Sidebar = () => {
   return (
     <aside className="global-sidebar">
       <div className="sidebar-content">
-
-        {/* Sidebar Header */}
+        
         <div className="sidebar-header">
-          <Logo variant="sidebar" />
+          <div className="sidebar-logo">M</div>
           <div>
             <h2>Mimo</h2>
             <p>Sabores que abraçam</p>
           </div>
         </div>
 
-        {/* Horário */}
         <div className="sidebar-card">
           <h3>
             <Clock size={16} />
@@ -41,7 +38,6 @@ const Sidebar = () => {
           </ul>
         </div>
 
-        {/* Promoção */}
         <div className="sidebar-card">
           <h3>
             <Gift size={16} />
@@ -56,7 +52,6 @@ const Sidebar = () => {
           </div>
         </div>
 
-        {/* Contato */}
         <div className="sidebar-card">
           <h3>
             <Phone size={16} />
@@ -68,39 +63,19 @@ const Sidebar = () => {
           </div>
           <div className="contact-item">
             <MapPin size={14} />
-            <span>Av. Marginal, Luanda</span>
+            <span>Luanda</span>
           </div>
         </div>
 
-        {/* Redes Sociais */}
         <div className="sidebar-card">
           <h3>Redes Sociais</h3>
           <div className="sidebar-social">
-            <SocialIcon
-              network="instagram"
-              size={40}
-              shape="round"
-              bgColor="var(--code-bg)"
-              fgColor="var(--text-h)"
-            />
-            <SocialIcon
-              network="facebook"
-              size={40}
-              shape="round"
-              bgColor="var(--code-bg)"
-              fgColor="var(--text-h)"
-            />
-            <SocialIcon
-              network="whatsapp"
-              size={40}
-              shape="round"
-              bgColor="var(--code-bg)"
-              fgColor="var(--text-h)"
-            />
+            <SocialIcon network="instagram" size={36} shape="round" />
+            <SocialIcon network="facebook" size={36} shape="round" />
+            <SocialIcon network="whatsapp" size={36} shape="round" />
           </div>
         </div>
 
-        {/* Fidelidade */}
         <div className="sidebar-card">
           <h3>
             <Award size={16} />
@@ -113,7 +88,6 @@ const Sidebar = () => {
           <p className="progress-text">Faltam 7 compras</p>
         </div>
 
-        {/* Pagamento */}
         <div className="sidebar-card">
           <h3>
             <CreditCard size={16} />
@@ -135,7 +109,6 @@ const Sidebar = () => {
           </div>
         </div>
 
-        {/* Avaliação */}
         <div className="sidebar-card">
           <h3>
             <Star size={16} />

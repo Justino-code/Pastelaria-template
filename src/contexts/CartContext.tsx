@@ -1,10 +1,14 @@
 // src/contexts/CartContext.tsx
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, useRef } from 'react';
 import toast from 'react-hot-toast';
 import { Product, CartItem, CartContextType } from '../types';
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 const CART_STORAGE_KEY = 'mimo_cart';
+
+interface CartProviderProps {
+  children: React.ReactNode;
+}
 
 export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   const [cart, setCart] = useState<CartItem[]>(() => {
@@ -20,33 +24,35 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     return [];
   });
 
+  const toastRef = useRef<string | null>(null);
+
   useEffect(() => {
     localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
   }, [cart]);
 
   const addToCart = (product: Product): void => {
     if (!product.stock) {
-      toast.error(`${product.name} está esgotado!`, {
-        icon: '❌',
-      });
+      toast.error(`${product.name} está esgotado!`);
       return;
     }
     
     setCart((prev) => {
       const existing = prev.find(item => item.id === product.id);
       if (existing) {
-        toast.success(`+1 ${product.name} adicionado!`, {
-          icon: '🛒',
-        });
+        if (!toastRef.current) {
+          toastRef.current = toast.success(`+1 ${product.name} adicionado!`);
+          setTimeout(() => { toastRef.current = null; }, 1000);
+        }
         return prev.map(item =>
           item.id === product.id 
             ? { ...item, quantity: item.quantity + 1 } 
             : item
         );
       }
-      toast.success(`${product.name} adicionado ao carrinho!`, {
-        icon: '🎉',
-      });
+      if (!toastRef.current) {
+        toastRef.current = toast.success(`${product.name} adicionado ao carrinho!`);
+        setTimeout(() => { toastRef.current = null; }, 1000);
+      }
       return [...prev, { ...product, quantity: 1 }];
     });
   };
@@ -54,22 +60,10 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   const removeFromCart = (id: number): void => {
     const product = cart.find(item => item.id === id);
     setCart(prev => prev.filter(item => item.id !== id));
-    toast.custom((t) => (
-      <div className="toast-undo">
-        <span>{product?.name} removido</span>
-        <button 
-          onClick={() => {
-            if (product) {
-              setCart(prev => [...prev, { ...product, quantity: product.quantity }]);
-              toast.dismiss(t);
-              toast.success(`${product.name} restaurado!`);
-            }
-          }}
-        >
-          Desfazer
-        </button>
-      </div>
-    ), { duration: 4000 });
+    if (!toastRef.current) {
+      toastRef.current = toast.success(`${product?.name} removido`);
+      setTimeout(() => { toastRef.current = null; }, 1000);
+    }
   };
 
   const updateQuantity = (id: number, quantity: number): void => {
@@ -87,7 +81,10 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   const clearCart = (): void => {
     setCart([]);
     localStorage.removeItem(CART_STORAGE_KEY);
-    toast.success('Carrinho limpo!', { icon: '🗑️' });
+    if (!toastRef.current) {
+      //toastRef.current = toast.success('Carrinho limpo!');
+      setTimeout(() => { toastRef.current = null; }, 1000);
+    }
   };
 
   const totalKz = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);

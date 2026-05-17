@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 import { useCart } from '../contexts/CartContext';
 import CartItem from '../components/CartItem';
 import ThemeToggle from '../components/ThemeToggle';
-import { ArrowLeft, ShoppingBag, Tag, ShoppingCart, Coffee } from 'lucide-react';
+import { ArrowLeft, ShoppingBag, Tag, ShoppingCart } from 'lucide-react';
 
 const Cart: FC = () => {
   const navigate = useNavigate();
